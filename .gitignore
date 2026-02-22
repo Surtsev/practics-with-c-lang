@@ -1,0 +1,9 @@
+.envrc
+.ccls-cache/
+*/*.o.d
+*/*.o.*
+*/*.ko
+*/*.cmd
+*/*.sym*
+*/compile_commands.json
+
