@@ -1,12 +1,11 @@
-# Простой Makefile для NixOS + kernel modules
 obj-m += hwmod.o
 
-# Берём KERNEL_DIR из окружения nix-shell
-PWD  = $(shell pwd)
+KDIR ?= $(KERNEL_DIR)/lib/modules/$(shell uname -r)/build
+PWD  := $(shell pwd)
 
 all:
 	@echo "Building with KDIR=$(KDIR)"
-	$(MAKE) -C $(KERNEL_DIR)/lib/modules/$(shell uname --kernel-release)/build M=$(PWD) modules
+	$(MAKE) -C $(KDIR) M=$(PWD) modules
 
 clean:
-	$(MAKE) -C $(KERNEL_DIR)/lib/modules/$(shell uname --kernel-release)/build M=$(PWD) clean
+	$(MAKE) -C $(KDIR) M=$(PWD) clean
